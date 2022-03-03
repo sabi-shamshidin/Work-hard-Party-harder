@@ -1,0 +1,29 @@
+{% extends "image_classification/base.html" %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'image_classification/css/style.css' %}">
+{% endblock %}
+{% block page %}
+    <title>Uploaded Files</title>
+{% endblock %}
+{% block content %}
+    <div class="container py-5">
+        <header class="text-white text-center">
+            <h1 class="display-4">Image Classification Service Using Django and Keras</h1>
+        </header>
+        
+        <div class="row py-4">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            <div class="col-lg-6 mx-auto">
+                <div class="image-area mt-4"><img id="imageResult" src="{{ file_url }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                <ul>
+                {% for results in result_list %}
+                    <li> {{ results }} </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </form>
+        </div>
+    </div>
+{% endblock %}
